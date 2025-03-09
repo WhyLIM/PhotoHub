@@ -25,7 +25,7 @@ import { RouterLink } from 'vue-router'
     right: 0;
     z-index: 100;
     opacity: 0.8;
-    background: rgba(255, 255, 255, 0.95);
+    /* background: rgba(255, 255, 255, 0.95); */
     backdrop-filter: blur(10px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -56,7 +56,7 @@ import { RouterLink } from 'vue-router'
 
 .nav-item {
     text-decoration: none;
-    color: #333;
+    color: #fff;
     font-size: 1rem;
     font-weight: 500;
     transition: color 0.3s;

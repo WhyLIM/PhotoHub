@@ -1,27 +1,37 @@
 <template>
     <div class="home-view" :style="backgroundStyle">
-        <div class="welcome-section">
-            <h1 class="welcome-title">欢迎来到 PhotoHub</h1>
-            <p class="welcome-text">
-                这是一个展示精选摄影作品的平台，记录光与影的瞬间，分享摄影的乐趣与感动。
-                在这里，您可以欣赏到各种风格的摄影作品，了解每张照片背后的故事和技术细节。
-            </p>
-            <p class="welcome-text">
-                通过导航栏，您可以探索随机精选的照片，或浏览按主题组织的影像集。
-                每张照片都附有详细的拍摄参数和创作故事，希望能为您带来视觉上的享受和摄影技术上的启发。
-            </p>
-        </div>
-        <div class="daily-photo-section">
-            <h2 class="section-title">每日推荐</h2>
-            <div class="photo-card">
-                <img src="https://picsum.photos/600/800" alt="每日推荐照片" class="featured-photo" />
-                <div class="photo-info">
-                    <h3 class="photo-title">山间湖泊</h3>
-                    <p class="photo-description">宁静的湖水倒映着雄伟的山峰，云雾缭绕间展现大自然的神秘与壮丽。</p>
-                    <div class="photo-meta">
-                        <span class="photo-date">拍摄于 2023年10月15日</span>
-                        <span class="photo-location">奥地利 哈尔施塔特</span>
-                    </div>
+        <div class="profile-section">
+            <div class="avatar-container">
+                <img src="/avatar.png" alt="个人头像" class="avatar-image" />
+                <div class="social-icons">
+                    <a href="https://instagram.com" target="_blank" class="social-icon">
+                        <font-awesome-icon :icon="['fab', 'instagram']" />
+                    </a>
+                    <a href="https://weibo.com" target="_blank" class="social-icon">
+                        <font-awesome-icon :icon="['fab', 'weibo']" />
+                    </a>
+                    <a href="https://github.com" target="_blank" class="social-icon">
+                        <font-awesome-icon :icon="['fab', 'github']" />
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="social-icon">
+                        <font-awesome-icon :icon="['fab', 'twitter']" />
+                    </a>
+                </div>
+            </div>
+            <div class="bio-container">
+                <h1 class="bio-title">欢迎来到 PhotoHub</h1>
+                <h2 class="bio-subtitle">摄影师 & 旅行爱好者</h2>
+                <p class="bio-text">
+                    热爱摄影的旅行者，喜欢用镜头记录世界各地的美景和人文风情。
+                    擅长风光和街头摄影，希望通过照片分享我眼中的世界。
+                </p>
+                <p class="bio-text">
+                    这是一个展示精选摄影作品的平台，记录光与影的瞬间，分享摄影的乐趣与感动。
+                    在这里，您可以欣赏到各种风格的摄影作品，了解每张照片背后的故事和技术细节。
+                </p>
+                <div class="navigation-buttons">
+                    <router-link to="/explore" class="nav-button explore-button">探索作品</router-link>
+                    <router-link to="/collections" class="nav-button collections-button">浏览影像集</router-link>
                 </div>
             </div>
         </div>
@@ -40,10 +50,13 @@ const backgroundStyle = computed(() => ({
 
 <style scoped>
 .home-view {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 8rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* min-height: calc(100vh - 70px); */
 }
 
 .home-view::before {
@@ -63,82 +76,170 @@ const backgroundStyle = computed(() => ({
     /* 避免模糊边缘 */
 }
 
-.welcome-title {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  color: #333;
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-.welcome-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 1rem;
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
 }
 
-.section-title {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-  color: #333;
+.avatar-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
 }
 
-.photo-card {
-  background: white;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+.avatar-image:hover {
+    transform: scale(1.05);
 }
 
-.photo-card:hover {
-  transform: translateY(-5px);
+.social-icons {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 0.5rem;
 }
 
-.featured-photo {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  display: block;
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    color: #555;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
 }
 
-.photo-info {
-  padding: 1.5rem;
+.social-icon:hover {
+    background: #409EFF;
+    color: white;
+    transform: translateY(-3px);
 }
 
-.photo-title {
-  font-size: 1.4rem;
-  margin-bottom: 0.5rem;
-  color: #333;
+.bio-container {
+    display: flex;
+    flex-direction: column;
 }
 
-.photo-description {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 1rem;
-  line-height: 1.5;
+.bio-title {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+    color: #333;
 }
 
-.photo-meta {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  font-size: 0.9rem;
-  color: #777;
+.bio-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.bio-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.nav-button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.explore-button {
+    background: #409EFF;
+    color: white;
+}
+
+.collections-button {
+    background: transparent;
+    color: #409EFF;
+    border: 1px solid #409EFF;
+}
+
+.nav-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.explore-button:hover {
+    background: #2c8af8;
+}
+
+.collections-button:hover {
+    background: rgba(64, 158, 255, 0.1);
 }
 
 @media (min-width: 768px) {
-  .home-view {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .welcome-section {
-    flex: 1;
-    padding-right: 2rem;
-  }
-  
-  .daily-photo-section {
-    flex: 1;
-  }
+    .profile-section {
+        flex-direction: row;
+        align-items: flex-start;
+        margin: auto;
+    }
+
+    .avatar-container {
+        flex: 1;
+        max-width: 300px;
+        margin: auto;
+    }
+
+    .bio-container {
+        flex: 2;
+        padding-left: 2rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .home-view {
+        padding: 1rem;
+    }
+
+    .profile-section {
+        padding: 1.5rem;
+    }
+
+    .avatar-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .bio-title {
+        font-size: 1.8rem;
+    }
+
+    .bio-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .navigation-buttons {
+        flex-direction: column;
+    }
 }
 </style>

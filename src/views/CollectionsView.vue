@@ -1,8 +1,9 @@
 <template>
-  <div class="collections-view">
+  <div class="collections-view" :style="backgroundStyle">
     <h1 class="collections-title">影像集</h1>
     <div class="collections-grid">
-      <div v-for="collection in collections" :key="collection.id" class="collection-card" @click="viewCollection(collection)">
+      <div v-for="collection in collections" :key="collection.id" class="collection-card"
+        @click="viewCollection(collection)">
         <div class="collection-cover">
           <img :src="collection.coverImage" :alt="collection.title" class="cover-image" />
           <div class="collection-info">
@@ -20,7 +21,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+// 背景样式，使用当前照片创建高斯模糊背景
+const backgroundStyle = computed(() => ({
+  '--bg-image': `url(https://picsum.photos/600/800)`,
+}))
 
 // 模拟合集数据
 const collections = ref([
@@ -62,10 +68,27 @@ const viewCollection = (collection) => {
   padding: 2rem 0;
 }
 
+.collections-view::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center;
+  filter: blur(20px) brightness(0.7);
+  opacity: 1;
+  z-index: -1;
+  transform: scale(1.1);
+  /* 避免模糊边缘 */
+}
+
 .collections-title {
   font-size: 2.5rem;
   margin-bottom: 2rem;
-  color: #333;
+  color: #fff;
 }
 
 .collections-grid {
