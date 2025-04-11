@@ -20,6 +20,7 @@ import { RouterLink } from 'vue-router'
 <style scoped>
 .header {
     position: fixed;
+    height: 70px;
     top: 0;
     left: 0;
     right: 0;

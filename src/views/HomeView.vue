@@ -51,12 +51,13 @@ const backgroundStyle = computed(() => ({
 <style scoped>
 .home-view {
     display: flex;
+    flex: 1;
     flex-direction: column;
     gap: 2rem;
     padding: 8rem 0;
     max-width: 1200px;
     margin: 0 auto;
-    /* min-height: calc(100vh - 70px); */
+    min-height: calc(100vh - 150px); /* 减去导航栏和页脚的高度 */
 }
 
 .home-view::before {

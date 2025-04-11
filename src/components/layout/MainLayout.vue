@@ -21,7 +21,7 @@ import TheFooter from './TheFooter.vue'
 }
 
 .content {
-  flex: 1;
+  /* flex: 1; */
   padding-top: 70px; /* 为固定的header留出空间 */
   max-width: 1200px;
   width: 100%;
